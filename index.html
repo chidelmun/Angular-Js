@@ -12,12 +12,14 @@
 <body ng-controller="myCtrl2">
 		<input type="text" name="qry" ng-model="query">
 
-		<ul ng-repeat="phone in phones |filter: query| orderBy:orderProp">
+		<ul ng-repeat="country in countries |filter: query| orderBy:orderProp">
 			<li>	 
-			<a href="">{{phone.name}}</a>
-			<span>{{phone.name}} </span>
+			<a href="">{{country.name}}</a>
+			<span>{{country.code}} </span>
 			</li>
 		</ul>
+
+
 	
 
 			<script type="text/javascript">
@@ -27,9 +29,11 @@
 				$scope.now = 2015;
 				$scope.dob = 1990;
 			});*/
-			app.controller("myCtrl2",function($scope){
-				$scope.phones = [{'name':'Nexus','price':200000},{'name':'Iphone','price':250000},{'name':'Blackberry','price':50000},{'name':'Galaxy s6','price':45000}];
-				$scope.criteria = "age";
+			app.controller("myCtrl2",function($scope,$http){
+				 $http.get('res/country.json').success(function(data){
+				 	$scope.countries = data;
+				 });
+				
 			});
 
 			</script>
