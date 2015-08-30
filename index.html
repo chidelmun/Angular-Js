@@ -8,16 +8,24 @@
 	</script>
 	<script type="text/javascript" src="js/animate.min.js">
 	</script>
+	<script type="text/javascript" src="js/route.min.js">
+	</script>
 </head>
 <body ng-controller="myCtrl2">
-		<table ng-repeat=" phone in phones">
+
+<div ng-view>
+	 
+</div>
+	<center>
+		<input ng-model="query" type="text">
+		<table ng-repeat=" phone in phones | filter:query">
 			<tr>
+				<td>{{phone.name}}</td>
 				<td><a href="{{phone.url}}">{{phone.name}}</a></td>
-				<td>{{phone.price}}</td>
-				<img ng-src="{{phone.url}}">
+				<td><a href="{{phone.url}}"><img src="{{phone.url}}"></a></td>
 			</tr>
 		</table>
-
+		</center>
 		<input type="text" name="qry" ng-model="query">
 
 		<ul ng-repeat="country in countries |filter: query| orderBy:orderProp">
@@ -31,12 +39,27 @@
 	
 
 			<script type="text/javascript">
-			var app = 	angular.module("myapp",[]);
-			/*app.controller("myCtrl",function($scope){
-				$scope.names = "";
-				$scope.now = 2015;
-				$scope.dob = 1990;
-			});*/
+			var app = 	angular.module("myapp",['ngRoute']);
+			
+			app.config(['$routeProvider',
+				function($routeProvider){
+					/*$routeProvider.when('',
+					{
+						templateUrl: 'index.html',
+        				controller: 'myCtrl2'
+					}).
+					when('/phoneName',
+					{
+						templateUrl: 'tmp/phone.html',
+        				controller: 'myCtrl2'
+					})
+					.otherwise(
+						{
+							redirectTo : '/'
+						});*/
+					
+				}]);
+
 			app.controller("myCtrl2",function($scope,$http){
 				 $http.get('res/country.json').success(function(data){
 				 	$scope.countries = data;
@@ -47,6 +70,48 @@
 
 				 $scope.phones =[
 				 	{
+				 	'name':'iphone',
+				 	'id':'iphone_id',
+				 	'url':'res/iphone.jpg'
+				 },
+				 {
+				 	'name':'Galaxy',
+				 	'id':'galaxy_id',
+				 	'url':'res/gal.jpg'
+				 },
+				 	
+				 {
+				 'name':'Nexus',
+				 'id':'iphone_id',
+				 'url':'res/nexus.jpg'
+				},
+				 {
+				 	'name':'Blackbery',
+				 	'id':'Bbery_id',
+				 	'url':'res/bbery.jpg'
+				 },
+				 {
+				 	'name':'iphone',
+				 	'id':'iphone_id',
+				 	'url':'res/iphone.jpg'
+				 },
+				 {
+				 	'name':'Galaxy',
+				 	'id':'galaxy_id',
+				 	'url':'res/gal.jpg'
+				 },
+				 	
+				 {
+				 'name':'Nexus',
+				 'id':'iphone_id',
+				 'url':'res/nexus.jpg'
+				},
+				 {
+				 	'name':'Blackbery',
+				 	'id':'Bbery_id',
+				 	'url':'res/bbery.jpg'
+				 },
+				 {
 				 	'name':'iphone',
 				 	'id':'iphone_id',
 				 	'url':'res/iphone.jpg'
