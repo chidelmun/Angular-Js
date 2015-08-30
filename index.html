@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myapp">
 <head>
 	<title>AngularJS</title>
 	<style type="text/css">
-
 	</style>
+	<script type="text/javascript" src="js/angular.min.js">
+	</script>
+	<script type="text/javascript" src="js/animate.min.js">
+	</script>
 </head>
-<body>
-</body>
+	<body ng-controller="myCtrl">
+
+	<input ng-model="names" type="text">
+	<p>{{names}}</p>
+
+			<script type="text/javascript">
+			var app = 	angular.module("myapp",[]);
+			app.controller("myCtrl",function($scope){
+				$scope.names = "";
+			});
+
+			</script>
+	</body>
 </html>
