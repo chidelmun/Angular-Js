@@ -9,44 +9,28 @@
 	<script type="text/javascript" src="js/animate.min.js">
 	</script>
 </head>
-	<body ng-controller="myCtrl">
+<body ng-controller="myCtrl2">
+		<input type="text" name="qry" ng-model="query">
 
-	<input ng-model="names" type="text">
-
-	<div ng-controller="myCtrl2">
-		<input ng-model="phone" type="text">
-		<p>{{phone}}</p> 
-		<h2>{{names + " " }}</h2>
-		 <input ng-model="query" type="text">
-		<ul ng-repeat="phone in phones | filter : query">
-			<li><a href="">{{phone.name}}</a> <h6>{{phone.price}}</h6> </li>
-		 
+		<ul ng-repeat="phone in phones |filter: query| orderBy:orderProp">
+			<li>	 
+			<a href="">{{phone.name}}</a>
+			<span>{{phone.name}} </span>
+			</li>
 		</ul>
-		<table border="4px" ng-repeat="phone in phones | filter : query">
-			<tr>
-				<td>{{phone.name}}</td>
-				<td>{{phone.price}}</td>
-			</tr>
-		</table>
-		<p>Total number of phones: 2</p>
-	</div>
-	<p>You are  {{now-dob}} Years old </p>
-	<p>{{now}}</p>
+	
 
 			<script type="text/javascript">
 			var app = 	angular.module("myapp",[]);
-			app.controller("myCtrl",function($scope){
+			/*app.controller("myCtrl",function($scope){
 				$scope.names = "";
 				$scope.now = 2015;
 				$scope.dob = 1990;
-			});
+			});*/
 			app.controller("myCtrl2",function($scope){
-				$scope.phones = [{'name':'Nexus','price':20000},{'name':'Iphone','price':250000},{'name':'Blackberry','price':250000},{'name':'Galaxy s6','price':450000}];
+				$scope.phones = [{'name':'Nexus','price':200000},{'name':'Iphone','price':250000},{'name':'Blackberry','price':50000},{'name':'Galaxy s6','price':45000}];
+				$scope.criteria = "age";
 			});
-
-			function myCtrl3($scope){
-				$scope.email;
-			}
 
 			</script>
 	</body>
