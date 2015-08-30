@@ -10,6 +10,14 @@
 	</script>
 </head>
 <body ng-controller="myCtrl2">
+		<table ng-repeat=" phone in phones">
+			<tr>
+				<td><a href="{{phone.url}}">{{phone.name}}</a></td>
+				<td>{{phone.price}}</td>
+				<img ng-src="{{phone.url}}">
+			</tr>
+		</table>
+
 		<input type="text" name="qry" ng-model="query">
 
 		<ul ng-repeat="country in countries |filter: query| orderBy:orderProp">
@@ -32,7 +40,36 @@
 			app.controller("myCtrl2",function($scope,$http){
 				 $http.get('res/country.json').success(function(data){
 				 	$scope.countries = data;
+
+
+
 				 });
+
+				 $scope.phones =[
+				 	{
+				 	'name':'iphone',
+				 	'id':'iphone_id',
+				 	'url':'res/iphone.jpg'
+				 },
+				 {
+				 	'name':'Galaxy',
+				 	'id':'galaxy_id',
+				 	'url':'res/gal.jpg'
+				 },
+				 	
+				 {
+				 'name':'Nexus',
+				 'id':'iphone_id',
+				 'url':'res/nexus.jpg'
+				},
+				 {
+				 	'name':'Blackbery',
+				 	'id':'Bbery_id',
+				 	'url':'res/bbery.jpg'
+				 }
+				 ];
+
+				 
 				
 			});
 
