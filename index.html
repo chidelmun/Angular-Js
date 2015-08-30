@@ -12,13 +12,30 @@
 	<body ng-controller="myCtrl">
 
 	<input ng-model="names" type="text">
+
+	<div ng-controller="myCtrl2">
+		<input ng-model="phone" type="text">
+		<p>{{phone}}</p> 
+		<h2>{{names + " " }}</h2>
+		{{5+10}}
+	</div>
+	<p>You are  {{now-dob}} Years old </p>
 	<p>{{names}}</p>
 
 			<script type="text/javascript">
 			var app = 	angular.module("myapp",[]);
 			app.controller("myCtrl",function($scope){
 				$scope.names = "";
+				$scope.now = 2015;
+				$scope.dob = 1990;
 			});
+			app.controller("myCtrl2",function($scope){
+				$scope.phone;
+			});
+
+			function myCtrl3($scope){
+				$scope.email;
+			}
 
 			</script>
 	</body>
